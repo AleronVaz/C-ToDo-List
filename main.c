@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 void addTask();
+void viewTask();
 
 int main()
 {
@@ -10,13 +11,14 @@ int main()
     while (1) {
         printf("\n------ SMART TO-DO LIST ------\n");
         printf("1: Add Task\n");
-        printf("2: Exit\n");
+        printf("2: View Task\n");
+        printf("3: Exit\n");
         printf("------------------------------\n");
         printf("Enter your choice: ");
 
         scanf("%d",&choice);
 
-        if (choice != 1 && choice != 2)
+        if (choice != 1 && choice != 2 && choice !=3)
             {
                 printf("Please enter a valid number\n");
                 continue;
@@ -28,7 +30,9 @@ int main()
         switch (choice) {
             case 1: addTask();
                     break;
-            case 2: printf("Exiting the program\n");
+            case 2: viewTask();
+                    break;
+            case 3: printf("Exiting the program\n");
                     exit(0);
             default: printf("Invalid choice! Try again.\n");
         }
@@ -61,4 +65,24 @@ void addTask()
     fclose(smartlist);
 
     printf("Task saved!\n");
+}
+void viewTask()
+{
+    FILE* smartlist = fopen("tasks.txt", "r");
+    if (smartlist == NULL) {
+        printf("Error opening smartlist!\n");
+        return;
+    }
+
+    char task[1000];
+    int count = 0;
+    printf("\n--- Your Tasks ---\n");
+    while (fgets(task, sizeof(task), smartlist) != NULL)
+    {
+        count++;
+        printf("%d : %s",count,task);
+    }
+    printf("-----------------\n");
+
+    fclose(smartlist);
 }
