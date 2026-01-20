@@ -9,6 +9,8 @@ A simple **menu-driven To-Do List application** written in C using file handling
   - **Add Task**
   - **Exit**
   - **View Task**
+  - **Delete Task**
+  - **Mark Completed**
 
 ## How to use
 1. Compile the program using:
